@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - LlamaVault Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 56px;
+        }
+        .hero {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .content {
+            padding: 3rem 0;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+        code {
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">LlamaSearch.ai</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../llamapackages/index.html">LlamaPackages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">LlamaVault</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/llamasearchai">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Getting Started with LlamaVault</h1>
+            <p class="lead">Learn how to install and use LlamaVault for secure credential management</p>
+        </div>
+    </div>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar sticky-top" style="top: 80px;">
+                    <h5>Documentation</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="getting_started.html" class="fw-bold">Getting Started</a></li>
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="basic_usage.html">Basic Usage</a></li>
+                        <li><a href="api_reference.html">API Reference</a></li>
+                        <li><a href="advanced_usage.html">Advanced Usage</a></li>
+                        <li><a href="security.html">Security Guide</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="integrations.html">Integrations</a></li>
+                    </ul>
+                    <h5 class="mt-4">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://github.com/llamasearchai/llamavault">GitHub Repository</a></li>
+                        <li><a href="../docs/contributing.html">Contributing Guide</a></li>
+                        <li><a href="../docs/changelog.html">Changelog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h2>Getting Started with LlamaVault</h2>
+                <p>LlamaVault is a secure credential management system designed for AI applications. This guide will help you get started with installing and using LlamaVault in your projects.</p>
+                
+                <h3 id="prerequisites">Prerequisites</h3>
+                <p>Before you begin, make sure you have the following:</p>
+                <ul>
+                    <li>Python 3.8 or higher</li>
+                    <li>pip (Python package installer)</li>
+                    <li>Basic knowledge of command-line operations</li>
+                </ul>
+
+                <h3 id="installation">Installation</h3>
+                <p>Install LlamaVault using pip:</p>
+                <pre><code>pip install llamavault</code></pre>
+                
+                <p>To verify the installation, run:</p>
+                <pre><code>llamavault --version</code></pre>
+                <p>You should see the current version of LlamaVault displayed.</p>
+
+                <h3 id="creating-vault">Creating a Vault</h3>
+                <p>Before you can store and retrieve credentials, you need to create a vault:</p>
+                <pre><code>llamavault init</code></pre>
+                
+                <p>You'll be prompted to create a master password. This password is used to encrypt and decrypt your vault, so make sure it's strong and you remember it!</p>
+                
+                <div class="alert alert-warning">
+                    <strong>Important:</strong> If you lose your master password, you will not be able to recover your credentials.
+                </div>
+                
+                <p>By default, the vault file is created in <code>~/.llamavault/vault.json</code>. You can specify a different location using the <code>--vault-path</code> option:</p>
+                <pre><code>llamavault init --vault-path /path/to/my/vault.json</code></pre>
+
+                <h3 id="storing-credentials">Storing Credentials</h3>
+                <p>To add a credential to your vault:</p>
+                <pre><code>llamavault add KEY VALUE</code></pre>
+                
+                <p>For example:</p>
+                <pre><code># Add an API key
+llamavault add api_key "my-secret-api-key"
+
+# Add a database password
+llamavault add db_password "super-secret-password"
+
+# Add complex credentials as JSON
+llamavault add database '{"host": "localhost", "port": 5432, "username": "admin", "password": "secret"}'</code></pre>
+
+                <h3 id="retrieving-credentials">Retrieving Credentials</h3>
+                <p>To retrieve a credential from your vault:</p>
+                <pre><code>llamavault get KEY</code></pre>
+                
+                <p>For example:</p>
+                <pre><code># Get an API key
+llamavault get api_key
+
+# Get database credentials
+llamavault get database</code></pre>
+
+                <h3 id="listing-credentials">Listing Credentials</h3>
+                <p>To see all the credentials in your vault (without showing their values):</p>
+                <pre><code>llamavault list</code></pre>
+
+                <h3 id="using-in-scripts">Using LlamaVault in Scripts</h3>
+                <p>LlamaVault provides a Python API for accessing credentials in your scripts:</p>
+                <pre><code>import llamavault
+
+# Create a vault instance (will prompt for password if not provided)
+vault = llamavault.Vault()
+
+# Get a credential
+api_key = vault.get("api_key")
+
+# Use the credential
+print(f"Using API key: {api_key}")
+
+# Get complex credentials
+db_creds = vault.get("database")
+print(f"Connecting to {db_creds['host']}:{db_creds['port']} as {db_creds['username']}")</code></pre>
+
+                <h3 id="environment-variables">Using Environment Variables</h3>
+                <p>You can export credentials as environment variables for use with applications:</p>
+                <pre><code>llamavault export api_key
+
+# Or export with a custom environment variable name
+llamavault export database_password --env-name DB_PASSWORD</code></pre>
+
+                <p>In a script, you can load credentials as environment variables:</p>
+                <pre><code>import llamavault
+import os
+
+# Load credentials into environment variables
+vault = llamavault.Vault()
+vault.export_to_env("api_key")
+vault.export_to_env("database_password", env_name="DB_PASSWORD")
+
+# Use the environment variables
+api_key = os.environ.get("API_KEY")
+db_password = os.environ.get("DB_PASSWORD")</code></pre>
+
+                <h3 id="next-steps">Next Steps</h3>
+                <p>Now that you're familiar with the basics of LlamaVault, you can explore more advanced features:</p>
+                <ul>
+                    <li><a href="advanced_usage.html">Advanced Usage</a> - Learn about more advanced features like versioning, tagging, and search</li>
+                    <li><a href="security.html">Security Guide</a> - Understand the security features of LlamaVault and best practices</li>
+                    <li><a href="integrations.html">Integrations</a> - Discover how to integrate LlamaVault with other tools and services</li>
+                    <li><a href="examples.html">Examples</a> - See examples of LlamaVault in action</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>LlamaSearch.ai</h3>
+                    <p>Building powerful tools for AI developers</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="https://github.com/llamasearchai" class="btn btn-outline-dark">GitHub</a>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center">&copy; 2023 LlamaSearch.ai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
