@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Export Credentials - LlamaVault{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-file-export me-2"></i>Export Credentials
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Export your credentials to a <code>.env</code> file for use in your projects.</p>
+                    
+                    <div class="alert alert-info">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="fas fa-info-circle fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="alert-heading">About .env Files</h5>
+                                <p class="mb-0">
+                                    A <code>.env</code> file is a text file containing environment variables in the format <code>KEY=VALUE</code>.
+                                    It's commonly used in development to store configuration and sensitive information.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form method="post" class="mt-4">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="uppercase" name="uppercase" checked>
+                                <label class="form-check-label" for="uppercase">
+                                    Convert credential names to uppercase
+                                </label>
+                                <div class="form-text">
+                                    Environment variables are typically uppercase by convention.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i> Back
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-download me-1"></i> Download .env File
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4">
+                    
+                    <h5>Command Line Alternative</h5>
+                    <p>You can also export credentials using the command line:</p>
+                    <div class="bg-dark text-light p-2 rounded">
+                        <code>llamavault export .env</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
